@@ -1,6 +1,6 @@
 ---
 title: "MIMIC-III Lab Events Item ID"
-author: "<h3><p>Yuzhe (Vanessa) You vyou@umich.edu</p></h3>  <h3><p>Ziyuan Sun ziyuans@umich.edu</p></h3> <h3><p> Jessica Wild<h3><p>"
+author: "<h3><p>Yuzhe (Vanessa) You vyou@umich.edu</p></h3>  <h3><p>Ziyuan Sun ziyuans@umich.edu</p></h3> <h3><p> Jessica Wild jesswild@umich.edu<h3><p>"
 date: "`r format(Sys.time(), '%B %Y')`"
 output:
   html_document:
@@ -71,7 +71,6 @@ OR itemid = 50931
 OR itemid = 51249
 OR itemid = 51279
 `
-
 ```{r eval=T, message=F, warning=F}
 itemid_data <- read.csv('25 itemids.csv')
 str(itemid_data)
@@ -82,9 +81,11 @@ kable(itemid_data, caption="The 25 most common itemids") %>%
 kable_styling(bootstrap_options='striped')
 ```
 
+Since each itemid stands for a distinct lab test, we determined that none of the itemids are likely to be redundant, and so there was no need to merge any of them.
+
 #Plots for itemids
 
-Here we made a bar plot that shows the frequency of the 25 most common itemids:
+Here we made a bar chart that shows the frequency of the 25 most common itemids:
 
 ```{r eval=T, message=F, warning=F,fig.width=20,fig.height=10}
 barplot(frequency_data$count,names.arg=frequency_data$itemid,xlim=c(1,25),ylim=c(0,10^6),xlab='item id',main='the barplot for most common 25 itemids')
@@ -99,3 +100,112 @@ new_frequency<-rbind(frequency_all_data[1:25,],de)
 pie(new_frequency$count,labels =new_frequency$itemid,main='pie chart for major itemids')
 ```
 
+#Bar Charts for itemids
+
+To visualize the results of the most common tests, we can make bar charts displaying the results (normal vs abnormal) for each of the top five itemids
+
+
+```{r eval=T, message=F, warning=F,fig.width=3,fig.height=3}
+data_51221 <- read.csv('51221.csv')
+
+for (i in 1:nrow(data_51221)) {
+  if (data_51221$flag[i] == "") {
+    data_51221$flag_1[i] <- "normal"
+  }
+  else {
+    data_51221$flag_1[i] <- "abnormal"
+  }
+}
+  
+barplot(prop.table(table(data_51221$flag_1)))
+```
+
+```{r eval=T, message=F, warning=F,fig.width=3,fig.height=3}
+data_50971 <- read.csv('50971.csv')
+
+for (i in 1:nrow(data_50971)) {
+  if (data_50971$flag[i] == "") {
+    data_50971$flag_1[i] <- "normal"
+  }
+  else {
+    data_50971$flag_1[i] <- "abnormal"
+  }
+}
+
+barplot(prop.table(table(data_50971$flag_1)))
+```
+
+```{r eval=T, message=F, warning=F,fig.width=3,fig.height=3}
+data_50983 <- read.csv('50983.csv')
+
+for (i in 1:nrow(data_50983)) {
+  if (data_50983$flag[i] == "") {
+    data_50983$flag_1[i] <- "normal"
+  }
+  else {
+    data_50983$flag_1[i] <- "abnormal"
+  }
+}
+
+barplot(prop.table(table(data_50983$flag_1)))
+```
+
+```{r eval=T, message=F, warning=F,fig.width=3,fig.height=3}
+data_50912 <- read.csv('50912.csv')
+
+for (i in 1:nrow(data_50912)) {
+  if (data_50912$flag[i] == "") {
+    data_50912$flag_1[i] <- "normal"
+  }
+  else {
+    data_50912$flag_1[i] <- "abnormal"
+  }
+}
+
+barplot(prop.table(table(data_50912$flag_1)))
+```
+
+```{r eval=T, message=F, warning=F,fig.width=3,fig.height=3}
+data_50902 <- read.csv('50902.csv')
+
+for (i in 1:nrow(data_50902)) {
+  if (data_50902$flag[i] == "") {
+    data_50902$flag_1[i] <- "normal"
+  }
+  else {
+    data_50902$flag_1[i] <- "abnormal"
+  }
+}
+
+barplot(prop.table(table(data_50902$flag_1)))
+```
+
+```{r eval=T, message=F, warning=F,fig.width=3,fig.height=3}
+data_51006 <- read.csv('51006.csv')
+
+for (i in 1:nrow(data_51006)) {
+  if (data_51006$flag[i] == "") {
+    data_51006$flag_1[i] <- "normal"
+  }
+  else {
+    data_51006$flag_1[i] <- "abnormal"
+  }
+}
+
+barplot(prop.table(table(data_51006$flag_1)))
+```
+
+```{r eval=T, message=F, warning=F,fig.width=3,fig.height=3}
+data_50882 <- read.csv('50882.csv')
+
+for (i in 1:nrow(data_50882)) {
+  if (data_50882$flag[i] == "") {
+    data_50882$flag_1[i] <- "normal"
+  }
+  else {
+    data_50882$flag_1[i] <- "abnormal"
+  }
+}
+
+barplot(prop.table(table(data_50882$flag_1)))
+```
