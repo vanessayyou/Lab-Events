@@ -50,7 +50,7 @@ str(frequency_data)
 ```
 
 ```{r eval=T, message=F, warning=F}
-kable(head(frequency_data), caption="The 25 most common itemids") %>%
+kable(frequency_data, caption="The 25 most common itemids") %>%
 kable_styling(bootstrap_options='striped')
 ```
 
@@ -78,6 +78,24 @@ str(itemid_data)
 ```
 
 ```{r eval=T, message=F, warning=F}
-kable(head(itemid_data), caption="The 25 most common itemids") %>%
+kable(itemid_data, caption="The 25 most common itemids") %>%
 kable_styling(bootstrap_options='striped')
 ```
+
+#Plots for itemids
+
+Here we made a bar plot that shows the frequency of the 25 most common itemids:
+
+```{r eval=T, message=F, warning=F,fig.width=20,fig.height=10}
+barplot(frequency_data$count,names.arg=frequency_data$itemid,xlim=c(1,25),ylim=c(0,10^6),xlab='item id',main='the barplot for most common 25 itemids')
+```
+
+And a pie chart that shows the frequency of all itemids:
+
+```{r eval=T, message=F, warning=F,fig.width=10,fig.height=10}
+frequency_all_data <- read.csv('count_all.csv')
+de<-data.frame(itemid='others',count=sum(frequency_all_data$count[26:726]))
+new_frequency<-rbind(frequency_all_data[1:25,],de)
+pie(new_frequency$count,labels =new_frequency$itemid,main='pie chart for major itemids')
+```
+
