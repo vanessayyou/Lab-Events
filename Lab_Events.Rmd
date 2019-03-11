@@ -1,0 +1,83 @@
+---
+title: "MIMIC-III Lab Events Item ID"
+author: "<h3><p>Yuzhe (Vanessa) You vyou@umich.edu</p></h3>  <h3><p>Ziyuan Sun ziyuans@umich.edu</p></h3> <h3><p> Jessica Wild<h3><p>"
+date: "`r format(Sys.time(), '%B %Y')`"
+output:
+  html_document:
+    highlight: tango
+    number_sections: yes
+    theme: default
+    toc: yes
+    toc_depth: 3
+    toc_float:
+      collapsed: yes
+      smooth_scroll: yes
+subtitle: <h2><u>Winter 2019, SOCR-MDP</u></h2>
+---
+
+```{r message=F, warning=F}
+# Data preparation
+library('psych')          # descriptive stats
+
+# Plots and tables
+library('knitr')          # knitting Rmd to HTML; kable() function
+library('kableExtra')     # extra formating options for knitr tables
+library('ggplot2')        # 2d plotting
+library('ggpubr')         # extra formatting options for ggplot
+```
+
+**Random Seed Set**
+```{r message=F, warning=F}
+set.seed(123456)
+```
+
+# Extracting the data
+We first calculated the total number of distinct itemids:
+
+`SELECT count(distinct itemid) FROM labevents as items_count`
+
+And the result gives us `726`, showing us that there are 726 itemids from labevents.
+
+Then we calculated the 25 most common itemids:
+
+`SELECT itemid, count(itemid) FROM labevents GROUP by itemid Order by count(*) LIMIT 25`
+
+Which gives us the table:
+
+```{r eval=T, message=F, warning=F}
+frequency_data <- read.csv('count.csv')
+str(frequency_data)
+```
+
+```{r eval=T, message=F, warning=F}
+kable(head(frequency_data), caption="The 25 most common itemids") %>%
+kable_styling(bootstrap_options='striped')
+```
+
+Then by finding those 25 itemids in the corresponding d_labitems, we see what they map to:
+
+`SELECT * FROM d_labitems WHERE itemid = 51221 
+OR itemid = 50971
+OR itemid = 50983
+OR itemid = 50912
+OR itemid = 50902
+OR itemid = 51006
+OR itemid = 50882
+OR itemid = 51265
+OR itemid = 50868
+OR itemid = 51301
+OR itemid = 51222
+OR itemid = 50931
+OR itemid = 51249
+OR itemid = 51279
+`
+
+```{r eval=T, message=F, warning=F}
+itemid_data <- read.csv('25 itemids.csv')
+str(itemid_data)
+```
+
+```{r eval=T, message=F, warning=F}
+kable(head(itemid_data), caption="The 25 most common itemids") %>%
+kable_styling(bootstrap_options='striped')
+```

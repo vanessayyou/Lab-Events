@@ -1,0 +1,26 @@
+row_id,itemid,label,fluid,category,loinc_code
+3,50802,Base Excess,Blood,Blood Gas,11555-0
+5,50804,Calculated Total CO2,Blood,Blood Gas,34728-6
+19,50818,pCO2,Blood,Blood Gas,11557-6
+21,50820,pH,Blood,Blood Gas,11558-4
+22,50821,pO2,Blood,Blood Gas,11556-8
+69,50868,Anion Gap,Blood,Chemistry,1863-0
+83,50882,Bicarbonate,Blood,Chemistry,1963-8
+94,50893,"Calcium, Total",Blood,Chemistry,2000-8
+103,50902,Chloride,Blood,Chemistry,2075-0
+113,50912,Creatinine,Blood,Chemistry,2160-0
+132,50931,Glucose,Blood,Chemistry,2345-7
+161,50960,Magnesium,Blood,Chemistry,2601-3
+171,50970,Phosphate,Blood,Chemistry,2777-1
+172,50971,Potassium,Blood,Chemistry,2823-3
+184,50983,Sodium,Blood,Chemistry,2951-2
+206,51006,Urea Nitrogen,Blood,Chemistry,3094-0
+421,51221,Hematocrit,Blood,Hematology,4544-3
+422,51222,Hemoglobin,Blood,Hematology,718-7
+448,51248,MCH,Blood,Hematology,785-6
+449,51249,MCHC,Blood,Hematology,786-4
+450,51250,MCV,Blood,Hematology,787-2
+465,51265,Platelet Count,Blood,Hematology,777-3
+477,51277,RDW,Blood,Hematology,788-0
+479,51279,Red Blood Cells,Blood,Hematology,789-8
+501,51301,White Blood Cells,Blood,Hematology,804-5
